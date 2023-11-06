@@ -18,9 +18,18 @@ class ThirdScreen extends StatelessWidget {
             SizedBox(height: 16), // Add some spacing between the buttons
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/Second', arguments: 'This is from Third to Second');
+                try {
+                  Navigator.pushNamed(context, '/Second',
+                      arguments: 'This is from Third to Second');
+                }catch(e){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Error: Route not found'),
+                    ),
+                  );
+                }
               },
+
               child: Text('Go back to previous page'),
             ),
             SizedBox(height: 16), // Add some spacing between the buttons

@@ -8,6 +8,7 @@ class InputScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Dynamic Routes Example'),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -50,14 +51,26 @@ class _NumberInputFieldState extends State<NumberInputField> {
             final value = int.tryParse(_controller.text);
             if (value != null && value > 0) {
               numberOfScreens = value;
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DynamicScreens(numberOfScreens),
-                ),
-              );
+              try {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DynamicScreens(numberOfScreens),
+                  ),
+                );
+              }catch(e){
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Error: Route not found'),
+                  ),
+                );
+              }
             } else {
-              // Handle invalid input
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                  content: Text('Error: Invalid input'),
+                  ),
+              );
             }
           },
           child: Text('Generate'),

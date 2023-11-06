@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_navi2/Calculator.dart';
+import 'package:flutter_navi2/DynamicScreen.dart';
+import 'package:flutter_navi2/GeneratedScreen.dart';
 import 'package:provider/provider.dart';
 import 'FirstScreen.dart';
 import 'SecondScreen.dart';
@@ -25,6 +26,7 @@ class DataProvider with ChangeNotifier {
 
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -89,4 +91,24 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+void _showErrorDialog(BuildContext context, String errorMessage) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text('Error'),
+        content: Text(errorMessage),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
 }
