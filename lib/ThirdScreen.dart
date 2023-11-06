@@ -15,19 +15,15 @@ class ThirdScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(args.toString()),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SecondScreen()));
-              },
-              child: Text('Button 1'),
-            ),
             SizedBox(height: 16), // Add some spacing between the buttons
             ElevatedButton(
               onPressed: () {
-                // Handle the onPressed action for the second button
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/Second', arguments: 'This is from Third to Second');
               },
-              child: Text('Button 2'),
+              child: Text('Go back to previous page'),
             ),
+            SizedBox(height: 16), // Add some spacing between the buttons
           ],
         ),
       ),

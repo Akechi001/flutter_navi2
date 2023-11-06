@@ -14,6 +14,7 @@ class FirstScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(args.toString()),
+            SizedBox(height: 16), // Add some spacing between the buttons
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SecondScreen()));
